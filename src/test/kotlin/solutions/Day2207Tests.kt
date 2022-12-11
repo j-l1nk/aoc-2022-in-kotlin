@@ -24,7 +24,10 @@ class Day2207Tests {
         assertNotEquals(1108687L, day.solveDayPartA())
         assertNotEquals(1205068L, day.solveDayPartA())
         assertNotEquals(1310866L, day.solveDayPartA())
-        assertEquals(95437L, day.solveDayPartA())
-        // assertEquals("DMRDFRHHH", day.solveDayPartB())
+        assertNotEquals(1074523L, day.solveDayPartA())
+
+        assertEquals(1307902L, day.solveDayPartA())
+
+    // assertEquals("DMRDFRHHH", day.solveDayPartB())
     }
 }

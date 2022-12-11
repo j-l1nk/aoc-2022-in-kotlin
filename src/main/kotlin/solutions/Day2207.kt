@@ -1,30 +1,29 @@
 package solutions
 
+import java.lang.Exception
+
 class Day2207(private val inputStrings: List<String>) {
     fun solveDayPartA(): Long {
-        val files = inputStrings
+        val directories = inputStrings
             .joinToString(",")
             .split("\$ cd ")
             .filter { it.isNotEmpty() && it != "..," }
             .map { it.toFile() }
             .associateBy { it.name }
 
-        return files
-            .map { it.value.getSize() + getAllDirectories(files, it.value.getDirectories()).sumOf { dirName -> files[dirName]?.getSize() ?: 0L } }
+        return directories
+            .map { dir -> dir.value.getSize() + getAllSubDirectories(rootDir = dir.value, allDirs = directories).sumOf { directories[it]?.getSize() ?: throw Exception("Size not found") } }
             .filter { it <= 100000L }
             .sum()
     }
 
-    private fun getAllDirectories(files: Map<String, File>, directories: List<String>): List<String> = directories
-        .map { files[it] }
-        .map {
-            when (it?.getDirectories()?.size == 0) {
-                true -> it!!.name
-                false -> it!!.name + getAllDirectories(files, it.getDirectories())
-            }
-        }
-
     fun solveDayPartB() = inputStrings
+
+    fun getAllSubDirectories(rootDir: File, allDirs: Map<String, File>): List<String> {
+        return allDirs[rootDir.name]!!
+            .getDirectories()
+            .flatMap { listOf(it) + getAllSubDirectories(rootDir=allDirs[it]!!, allDirs=allDirs) }
+    }
 
     data class File(
         val name: String,
