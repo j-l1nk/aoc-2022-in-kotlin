@@ -49,8 +49,4 @@ class Day2207(private val inputStrings: List<String>) {
         FILE,
         DIRECTORY
     }
-
-    private fun Map.Entry<String, File>.getSizeOfDirectories(files: Map<String, File>) = this
-        .value
-        .getSize()
 }

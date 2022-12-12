@@ -9,13 +9,20 @@ class Day2207Tests {
     companion object {
         private const val INPUT_FILE = "src/main/resources/Inputs/Day2207"
         private const val TEST_FILE = "src/test/resources/Inputs/TestFile2207"
+        private const val TEST_FILE_B = "src/test/resources/Inputs/TestFile2207b"
     }
 
-   @Test
+    @Test
     fun dayTests() {
-       val day = Day2207(FileReader.readStringsFromFile(TEST_FILE))
-       assertEquals(95437L, day.solveDayPartA())
-       // assertEquals("MCD", day.solveDayPartB())
+        val day = Day2207(FileReader.readStringsFromFile(TEST_FILE))
+        assertEquals(95437L, day.solveDayPartA())
+        // assertEquals("MCD", day.solveDayPartB())
+    }
+
+    @Test
+    fun dayTestsb() {
+        val day = Day2207(FileReader.readStringsFromFile(TEST_FILE_B))
+        assertEquals(95437L + 2*123L + 3*3L, day.solveDayPartA())
     }
 
     @Test
